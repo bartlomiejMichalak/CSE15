@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<!-- tip.html  Brad Askins-->
+<!-- Web page that calculates the tip amount on a check. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Buggy Tip Calculator 3</title>
+    </head>
+    <body>
+        <h2>Buggy Tip Calculator 3</h2>
+        <p>
+        	Enter the check amount: $<input type="tect" id="amountBox" size=10 value="">
+        	<br>
+        	Enter the tip percentage: %<input type="text" id="tipBox" size=10 value="">
+        </p>
+        <input type="button" value="Total Bill Calculator"
+            onclick="amount=parseFloat(document.getElementById('amountBox').value);
+            		 tipPercent = document.getElementById('tipBox').value;
+            		 tipPercent = parseFloat(tipPercent);
+            	tip = amount * ( tipPercent/100);
+            	totalAmount = amount + tip;
+            	document.getElementById('outputDiv').innerHTML=
+            	  'You should tip $' + tip;
+            	document.getElementById('outputDiv2').innerHTML=
+            	  'Total Check Amount is $' + totalAmount;">
+    	<hr>
+    	<div id="outputDiv"></div>
+    	<div id="outputDiv2"></div>
+    </body>
+</html>

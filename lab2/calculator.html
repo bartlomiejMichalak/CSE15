@@ -1,0 +1,35 @@
+<!doctype.html>
+<!-- calculator.html						Bart Michalak-->
+<!--This is a page page that calculates the tip amount on a check.           -->
+<!-- ======================================================================= -->
+
+<html>
+<head>
+	<title>Total Receipt</title>
+</head>
+
+<body>
+	<h2>Total Receipt</h2>
+	<p>
+	   Enter the check amount: $<input type="text" id="amountBox" size=10 value="">
+	   <br>
+	   Tip percentage: <input type="text" id="percentageBox" size=10 value"">%
+	   <br>
+	</p>
+	<input type="button" value="Total Bill Calculator"
+		onclick="amount=parseFloat(document.getElementById('amountBox').value);
+			 percentage=parseFloat(document.getElementById('percentageBox').value);
+			 bill = (amount * (percentage/100)) + amount;
+			 tip = (percentage/100) * amount;
+			 document.getElementById('outputDiv').innerHTML=
+				'Total Check: $' + bill.toFixed(2);
+				document.getElementById('outputDivv').innerHTML=
+				'Tip is: $' + tip.toFixed(2);">
+				
+				
+	
+	<hr>
+	<div id="outputDiv"></div>
+	<div id="outputDivv"></div>
+</body>
+</html>

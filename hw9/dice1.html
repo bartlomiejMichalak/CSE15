@@ -1,0 +1,49 @@
+<html>
+<head>
+<title> Die Rolls </title>
+<script type="text/javascript">
+function selectImage1(){
+   roll = Math.floor(Math.random() *6) +1;
+   imgName = 'die' + roll + '.gif';
+  document.getElementById('die1').src = imgName;
+  return roll;
+}
+function selectImage2(){
+	roll = Math.floor(Math.random() *6) +1;
+   imgName = 'die' + roll + '.gif';
+  document.getElementById('die2').src = imgName;
+  return roll;
+}
+count = 0;
+</script>
+
+</head>
+<body onload="sum=0;">
+<div style=text-align:center>
+<p>
+
+<img id="die1" alt="die image" src="die1.gif">
+<img id="die2" alt="die image" src="die2.gif">
+</p>
+<input type= "button" value= "Click to Roll"
+   onclick="selectImage1();
+   			selectImage2();
+   			count = count + 1;
+   			document.getElementById('rollCount').value= count;
+   			roll1 = selectImage1();
+    		roll2 = selectImage2();
+    		sum += (roll1 + roll2);
+    document.getElementById('sumBox').value=sum;
+    if( (roll1==1 && roll2==1) || (roll1+roll2)==7){
+    	alert('You are a winner!');
+    }
+    else {
+    	alert('You lose!')
+    }
+           " />
+<br>Number of Rolls: <input type="text" id="rollCount" value="0" />  
+ Sum of Rolls: <input type= "text" id="sumBox" value="0" 
+    />
+</div>
+</body>
+</html>

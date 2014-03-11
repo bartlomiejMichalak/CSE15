@@ -1,0 +1,31 @@
+<html>
+<head>
+<title> Die Rolls </title>
+<script type="text/javascript">
+function selectImage1(dieTwo){
+   roll = Math.floor(Math.random() *6) +1;
+   imgName = 'die' + roll + '.gif';
+   imgVar = 'die' + dieTwo
+  document.getElementById(imgVar).src = imgName;
+}
+count = 0;
+</script>
+
+</head>
+<body>
+<div style=text-align:center>
+<p>
+
+<img id="die1" alt="die image" src="die1.gif">
+<img id="die2" alt="die image" src="die2.gif">
+</p>
+<input type= "button" value= "Click to Roll"
+   onclick="selectImage1(1);
+   			selectImage1(2);
+   			count = count + 1;
+   			document.getElementById('rollCount').value= count;
+           " />
+<br><input type="text" id="rollCount" value="0" />       
+</div>
+</body>
+</html>

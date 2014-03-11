@@ -1,0 +1,31 @@
+<!doctype html>
+<! round1.html																	Bart Michalak -->
+<! Web page that rounds a number to one decimal place.							              -->
+<! ========================================================================================== -->
+
+<html>
+	<head>
+		<title> Number Rounder</title>
+	</head>
+	
+	<body>
+		<h2>Number Rounder</h2>
+		<p>
+			Enter number of digits to round to: <input type"text" id="numberBox" size=12 value=""
+		</p>
+		<input type="button" value="Submit"
+			onclick="power=parseFloat(document.getElementById('numberBox').value);">
+			<hr>
+			
+		<p>
+			Enter a number: <input type="text" id="numberBox1" size=12 value=3.14159
+		</p>
+		<input type="button" value="Round It"
+			onclick="number=parseFloat(document.getElementById('numberBox1').value);
+			rounded=Math.round(number*Math.pow(10,power))/Math.pow(10,power);
+			document.getElementById('outputDiv').innerHTML=
+			number + ' rounded to your number of decimal places is ' +rounded;">
+			<hr>
+			<div id="outputDiv"></div>
+	</body>
+</html>

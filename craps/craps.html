@@ -1,0 +1,168 @@
+<html>
+<head>
+<title> Die Rolls </title>
+<script type="text/javascript">
+	
+	var count = 0;
+	var pointValue = 0;
+	var pointValueRoll = 0;
+	
+	var bankAmount = 0;
+	var timesWon = 0;
+	var amountWon = 0;
+	var timesLost = 0;
+	var amountLost = 0;
+	var bet = 0
+	
+	function rollComeOutDice() {
+		if (pointValue > 0) {
+			alert("Please roll point valuse or reset");
+			return;
+		}
+		selectImage(1, true);
+		selectImage(2, true);
+		document.getElementById("pointValue").value = pointValue;
+		rollDice();
+		
+	}
+	
+	function rollPointValueDice(){
+		if ( pointValue == 0) {
+			alert("Please Press Come Out Roll First");
+			return;
+		} 
+		
+		selectImage(1, false);
+		selectImage(2, false);
+		rollDice();
+		pointValueRoll = 0;
+	}
+	
+	//abstracted function between pointValueRoll and rollComeOutDice
+	function rollDice() {
+		bankAmount = Number(document.getElementById("bankAmount").value);
+		bet = Number(document.getElementById("bet").value);
+		if ( bankAmount < bet || bankAmount <= 0 ) {
+			alert("Not Enought Money");
+			return;
+		}
+		checkGameStatus();
+	}
+	
+	function checkGameStatus(){
+		
+		if (pointValue == 2 || pointValue == 3 || pointValue == 12 ||
+			pointValueRoll == 2 || pointValueRoll == 3 || pointValueRoll == 12 )
+			loseGame();
+		else if (pointValue == 7 || pointValue == 11 ||
+				pointValueRoll == 7 || pointValueRoll == 11	)
+			winGame();
+		else if (pointValue == pointValueRoll)
+			winGame();
+			
+			
+		document.getElementById("bankAmount").value=bankAmount;
+	}
+	
+	function loseGame(){
+		timesLost++;
+		alert("You lose! You lose $" + bet + "\nYou have lost " + timesLost + " time(s).");
+		bankAmount -= bet;
+		amountLost += bet;
+		resetRoll();
+	}
+	
+	function winGame(){
+                timesWon++;
+		alert("You win! You win $" + bet + "\nYou have won " + timesWon + " time(s)!");
+		bankAmount += bet;
+		amountWon += bet;
+		resetRoll();
+	}
+	
+	function resetRoll(){
+		pointValue = 0;
+	}
+	
+	function resetGame() {
+		count = 0;
+		pointValue = 0;
+		pointValueRoll = 0;
+		
+		bankAmount = 0;
+		timesWon = 0;
+		amountWon = 0;
+		timesLost = 0;
+		amountLost = 0;
+		bet = 0;
+		
+		document.getElementById("bankAmount").value = 0;
+		document.getElementById("bet").value = 0;
+		document.getElementById("pointValue").value = 0;
+	}
+	
+	function showLosses(){
+		var losses;
+		
+		if (amountLost < amountWon) losses = 0;
+		else losses = amountLost - amountWon;
+		alert( "You have lost $" + losses + "\nYou have lost " + timesLost + " time(s)");
+	}
+	
+	function showWinnings(){
+		var winnings;
+		
+		if (amountLost > amountWon) winnings = 0;
+		else winnings =  amountWon - amountLost;
+		alert("You have won $" + winnings+ "\nYou have won: " + timesWon + " time(s)");
+	}
+	
+	function selectImage(die, updatePointValue){
+		roll = Math.floor(Math.random() *6) +1;
+		if (updatePointValue) 
+			pointValue += roll;
+		else 
+			pointValueRoll += roll
+		imgName = 'die' + roll + '.gif';
+		imgId = 'die' + die;
+		
+		document.getElementById(imgId).src = imgName;
+	}
+	
+</script>
+</head>
+<body background="CasinoCraps.jpg">
+<div style=text-align:center>
+<p>
+<hr>
+<img id="die1" alt="die image" src="die1.gif">
+<img id="die2" alt="die image" src="die2.gif">
+
+</p>
+<ul>
+<center><table id="center" bgcolor="green" heigh="200" width="200">
+<tr><td>
+<br><big>Enter a bank amount:</big><input type= "text" id="bankAmount" value="0" />
+<br><big>Enter your bet:</big><input type="text" id="bet" value="0" />
+<br><big>Point Value:</big><input type="text" id="pointValue" value="0" />
+<br><input type= "button" value= "Come out Roll"
+   onclick="rollComeOutDice()
+   " />
+<br><input type= "button" value= "Point Value Roll"
+   onclick="rollPointValueDice()
+   " />
+<br><input type= "button" value= "Reset"
+   onclick="resetGame()
+   " />
+<br><input type= "button" value= "Show My Winnings"
+   onclick="showWinnings()
+   " />
+<br><input type= "button" value= "Show My Losses"
+   onclick="showLosses()
+   " />
+</tr></td></center>
+<hr>
+<ul><br>       
+</div>
+</body>
+</html>
